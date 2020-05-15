@@ -11,8 +11,8 @@ interface ISearchParams {
 }
 
 export default class Environment {
-    private static readonly _supportsCssVariables = Boolean(window.CSS?.supports?.('.some-selector', 'var(--some-var)'));
-    private static readonly _activeEdge: Edge = Environment._supportsCssVariables ? '1px solid var(--accent)' : '1px solid hotpink';
+    private static readonly _supportsCssVariables = Boolean(window.CSS?.supports?.('border-color', 'var(--some-var)'));
+    private static readonly _activeEdge: Edge = Environment._supportsCssVariables ? '1px solid var(--active_edge)' : '1px solid hotpink';
 
     public static get searchParams(): ISearchParams {
         return (
