@@ -11,7 +11,7 @@ setup(
     name=package_name,
     version=package["version"],
     author=package["author"],
-    packages=[package_name.replace("_noisycomputation", "")],
+    packages=[package_name],
     url='https://github.com/noisycomputation/dash-table',
     include_package_data=True,
     license=package["license"],
