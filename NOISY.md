@@ -13,9 +13,18 @@ all the projects points to currently supported mutually-compatible versions
 of theproject, and the dash project's circleci config has been modified
 to pull in the forks, build them, and publish the resulting packages on
 the publicly available python repository <https://noisycomputation.github.io>.
-The convention for these forks is to use the version number they are based
-on with a `.post13` suffix per
-[PEP 440](https://www.python.org/dev/peps/pep-0440/#id28).
+The convention for these forks is to use the very next patch number from
+the version on which they are based with a `-a1` suffix:
+
+> Example: upstream v1.2.3 becomes v1.2.4-a1.
+
+The suffix specifies a pre-release of the next patch version consistent with both
+Python's [PEP 440](https://www.python.org/dev/peps/pep-0440/#id28) and
+Node's [semver](https://github.com/semver/semver/blob/master/semver.md).
+The next patch's pre-release was chosen to avoid version conflicts with
+upstream, for instance if upstream v1.2.3 were to be forked as v1.2.4,
+upstream's subsequent release of v1.2.4 would conflict with the noisycomputation
+version.
 
 Projects wishing to use the forked noisycomputation packages need to list the
 <https://noisycomputation.github.io>  repository as an extra install URL in
@@ -91,16 +100,8 @@ a husky commit hook defined, but it requires a full development environment:
 
 #### Changelog (individual version motivations)
 
-* v4.6.2.post13
+* v4.6.3.a1
 
    core/environment/index.ts:
 
     * changed `ACTIVE_EDGE` to `var(--active_edge)`
-
-* v4.7.0.post13
-
-   core/environment/index.ts:
-
-    * changed `ACTIVE_EDGE` to `var(--active_edge)`
-    * changed buggy test of whether browser supports CSS variables from checking
-      dummy variable `.some-selector` to the actual selector of interest 'border-color'
